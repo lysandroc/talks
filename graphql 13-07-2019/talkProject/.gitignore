@@ -1,0 +1,4 @@
+/microservice-product/node_modules
+/microservice-provider/node_modules
+/microservice-sale/node_modules
+/graphql-gatewayapi/node_modules
