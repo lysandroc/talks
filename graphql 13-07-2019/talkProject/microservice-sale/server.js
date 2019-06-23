@@ -20,3 +20,4 @@ server.get('/summary/', respond);
 server.listen(3000, function() {
   console.log('%s listening product microservice at %s', server.name, server.url);
 });
+ 
