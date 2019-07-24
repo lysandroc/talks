@@ -17,6 +17,6 @@ server.get('/providerByProduct/:name', respondParam);
 server.get('/provider', respond);
 server.get('/provider/', respond);
 
-server.listen(3000, function() {
-  console.log('%s listening product microservice at %s', server.name, server.url);
+server.listen(3002, function() {
+  console.log('%s listening provider microservice at %s', server.name, server.url);
 });

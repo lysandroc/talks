@@ -1,64 +1,41 @@
 version: '3'
 services:
-  
-  mongo:
-    image: mongo:3.6
-
   microservice-product:
     build: 
       context: "./microservice-product"
-    environment:
-     - MONGODB_URI=mongodb://mongo:27017/application 
     expose:
-     - 8080
+     - 3001
     ports:
-     - "8080:3000"
-    links:
-     - mongo 
-    depends_on: 
-     - mongo
+     - "8080:3001"
 
   microservice-provider:
     build: 
       context: "./microservice-provider"
-    environment:
-     - MONGODB_URI=mongodb://mongo:27017/application 
     expose:
-     - 8081
+     - 3002
     ports:
-     - "8081:3000"
-    links:
-     - mongo 
-    depends_on: 
-     - mongo
-
+     - "8081:3002"
+     
   microservice-sale:
     build: 
       context: "./microservice-sale"
-    environment:
-     - MONGODB_URI=mongodb://mongo:27017/application 
     expose:
-     - 8082
+     - 3003
     ports:
-     - "8082:3000"
-    links:
-     - mongo 
-    depends_on: 
-     - mongo
+     - "8082:3003"
 
-    gateway:
-      build:
-        context: "./graphql-gatewayapi"
-      expose:
-     - 80
+  gateway:
+    build:
+      context: "./graphql-gatewayapi"
+    expose:
+    - 80
     ports:
-     - "80:3000"
+    - "80:80"
     links:
-     - microservice-product
+    #  - microservice-product
      - microservice-provider
      - microservice-sale
     depends_on: 
-     - microservice-product
+    #  - microservice-product
      - microservice-provider
-     - microservice-sale
-     
+     - microservice-sale 

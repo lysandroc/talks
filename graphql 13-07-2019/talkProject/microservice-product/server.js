@@ -17,6 +17,6 @@ server.get('/product/:name', respondParam);
 server.get('/product', respond);
 server.get('/product/', respond);
 
-server.listen(3000, function() {
+server.listen(3001, function() {
   console.log('%s listening product microservice at %s', server.name, server.url);
 });

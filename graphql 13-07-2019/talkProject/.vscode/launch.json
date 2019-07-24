@@ -4,6 +4,13 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
+    {
+      "type": "node",
+      "name" : "teste",
+      "request": "launch",
+      "program": "${workspaceRoot}/graphql-gatewayapi/server.js"
+    }
+   
     
 
   ]

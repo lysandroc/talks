@@ -1,15 +1,9 @@
 const { GraphQLServer } = require('graphql-yoga');
-const {
-  getProduct, 
-  getSalesSummary, 
-  getProviders
-} = require('./myFunctions'); 
+const { getProductDetails } = require('./services'); 
 
 const typeDefs = `
   type Query {                                       
-    getProduct: Product
-    getSalesSummary: [Summary]
-    getProviders: [Providers]
+    getProductBy(name: String!): Product
   }
 
   type Product {
@@ -21,7 +15,7 @@ const typeDefs = `
 
   type Summary {
     month: String!
-    quantity: Int!
+    sale: Int!
   }
 
   type Provider {
@@ -32,15 +26,20 @@ const typeDefs = `
 
 const resolvers = {
   Query: {
-    getProduct: getProduct,
-    getSalesSummary: getSalesSummary,
-    getProviders: getProviders 
+   getProductBy: async (_, { name }) => await getProductDetails(name)
   },
 };
 
-const options = { port: 80 }
-const server = new GraphQLServer({ typeDefs, resolvers })
-server.start(options, () => console.log('Server is running on localhost:' + options.port));
+const options = {   
+  port: 80,   
+  endpoint: '/graphql',
+  subscriptions: '/subscriptions',
+  playground: '/playground',
+};
+
+const server = new GraphQLServer({ typeDefs, resolvers });
+
+server.start(options);
 
 
 
