@@ -3,39 +3,39 @@ services:
   microservice-product:
     build: 
       context: "./microservice-product"
-    expose:
-     - 3001
+    #expose:
+    # - 3001
     ports:
      - "8080:3001"
 
   microservice-provider:
     build: 
       context: "./microservice-provider"
-    expose:
-     - 3002
+    #expose:
+    # - 3002
     ports:
      - "8081:3002"
      
   microservice-sale:
     build: 
       context: "./microservice-sale"
-    expose:
-     - 3003
+    #expose:
+    # - 3003
     ports:
      - "8082:3003"
 
   gateway:
     build:
       context: "./graphql-gatewayapi"
-    expose:
-    - 80
+    #expose:
+    #- 80
     ports:
     - "80:80"
     links:
-    #  - microservice-product
+     - microservice-product
      - microservice-provider
      - microservice-sale
     depends_on: 
-    #  - microservice-product
+     - microservice-product
      - microservice-provider
      - microservice-sale 
